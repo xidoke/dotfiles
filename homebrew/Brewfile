@@ -21,10 +21,11 @@ brew "pyenv"
 brew "ranger"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
-# Safe, concurrent, practical language
-brew "rust"
+# Ruby version management (replaces brew ruby)
+brew "rbenv"
+brew "ruby-build"
+# Rust toolchain installer (replaces brew rust)
+brew "rustup-init"
 # Terminal multiplexer
 brew "tmux"
 # Plugin manager for tmux

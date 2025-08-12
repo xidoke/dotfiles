@@ -153,3 +153,19 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+# Java 21 (Homebrew)
+export JAVA_HOME="/opt/homebrew/opt/openjdk@21"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Rust Environment  
+# Add Cargo bin to PATH if it exists
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Ruby Environment (rbenv)
+# Initialize rbenv if available
+if command -v rbenv >/dev/null 2>&1; then
+    eval "$(rbenv init - zsh)"
+fi
