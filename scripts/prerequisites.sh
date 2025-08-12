@@ -26,7 +26,45 @@ install_homebrew() {
     fi
 }
 
+install_nvm() {
+    info "Installing NVM (Node Version Manager)..."
+    
+    if [ -d "$HOME/.nvm" ]; then
+        warning "NVM already installed at $HOME/.nvm"
+        return 0
+    fi
+    
+    # Download and install NVM
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    
+    # Source NVM for current session
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        success "NVM installed successfully"
+        
+        # Install and set Node.js 20.11.0 as default
+        info "Installing Node.js 20.11.0..."
+        nvm install 20.11.0
+        nvm use 20.11.0
+        nvm alias default 20.11.0
+        
+        # Verify installation
+        NODE_VERSION=$(node --version 2>/dev/null)
+        if [ "$NODE_VERSION" = "v20.11.0" ]; then
+            success "Node.js 20.11.0 installed and set as default"
+        else
+            warning "Node.js installed but version verification failed (got: $NODE_VERSION)"
+        fi
+    else
+        error "NVM installation failed"
+        return 1
+    fi
+}
+
 if [ "$(basename "$0")" = "$(basename "${BASH_SOURCE[0]}")" ]; then
     install_xcode
     install_homebrew
+    install_nvm
 fi

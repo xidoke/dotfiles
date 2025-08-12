@@ -18,6 +18,7 @@ if [[ "$install_apps" == "y" ]]; then
 
     install_xcode
     install_homebrew
+    install_nvm
 
     printf "\n"
     info "===================="
