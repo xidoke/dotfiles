@@ -11,6 +11,8 @@ brew "cmake"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
+# Java Development Kit 21 (LTS)
+brew "openjdk@21"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Platform built on V8 to build network applications (managed by NVM)
@@ -56,8 +58,8 @@ brew "zoxide"
 brew "lazygit"
 # Application uninstaller
 cask "appcleaner"
-# Web browser focusing on privacy
-cask "brave-browser"
+# Google's web browser
+cask "google-chrome"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # App to build and share containerized applications and microservices

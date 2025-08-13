@@ -127,18 +127,12 @@
                     "value": 1
                   }
                 ],
-                "description": "Open Brave",
+                "description": "Open Google Chrome",
                 "from": {
                   "key_code": "j",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
+                  "modifiers": { "optional": ["any"] }
                 },
-                "to": [
-                  {
-                    "shell_command": "open -a 'Brave Browser.app'"
-                  }
-                ],
+                "to": [{ "shell_command": "open -a 'Google Chrome.app'" }],
                 "type": "basic"
               },
               {

@@ -134,20 +134,14 @@ setup_rbenv() {
 setup_java() {
     info "Setting up Java environment..."
     
-    # Java should be installed via Homebrew cask 'temurin21'
-    # Find Java 21 installation path
-    JAVA_HOME_PATH=""
+    # Java should be installed via Homebrew 'openjdk@21'
+    # Set Java path for Homebrew OpenJDK 21
+    JAVA_HOME_PATH="/opt/homebrew/opt/openjdk@21"
     
-    # Check common locations for Temurin 21
-    if [ -d "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home" ]; then
-        JAVA_HOME_PATH="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"
-    elif [ -d "/opt/homebrew/opt/openjdk@21" ]; then
-        JAVA_HOME_PATH="/opt/homebrew/opt/openjdk@21"
-    fi
-    
-    if [ -n "$JAVA_HOME_PATH" ]; then
+    if [ -d "$JAVA_HOME_PATH" ]; then
         success "Java 21 found at $JAVA_HOME_PATH"
         export JAVA_HOME="$JAVA_HOME_PATH"
+        export PATH="$JAVA_HOME/bin:$PATH"
         
         # Verify Java version
         JAVA_VERSION=$(java -version 2>&1 | head -n 1 | grep -o "21\.[0-9]*\.[0-9]*")
@@ -157,7 +151,7 @@ setup_java() {
             warning "Java found but version verification failed"
         fi
     else
-        warning "Java 21 installation not found. Make sure 'brew install --cask temurin21' was successful"
+        warning "Java 21 installation not found. Make sure 'brew install openjdk@21' was successful"
     fi
 }
 
